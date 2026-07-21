@@ -381,3 +381,66 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* --- ABOUT SECTION LAYOUT --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+/* Para intercalar la segunda imagen a la izquierda en pantallas grandes */
+.about-grid.reverse {
+    grid-template-areas: "media text";
+}
+
+.about-grid.reverse .about-text {
+    grid-area: text;
+}
+
+.about-grid.reverse .about-media {
+    grid-area: media;
+}
+
+.about-img-placeholder {
+    min-height: 260px;
+}
+
+.about-full-skills {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+.skills-grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    list-style: none;
+    margin-top: 15px;
+}
+
+.skills-grid-list li {
+    color: var(--text-muted);
+}
+
+.skills-grid-list strong {
+    color: var(--text-main);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-grid, .about-grid.reverse {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+    }
+    
+    .about-grid.reverse .about-text,
+    .about-grid.reverse .about-media {
+        grid-area: auto;
+    }
+}
