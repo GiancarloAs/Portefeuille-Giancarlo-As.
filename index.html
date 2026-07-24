@@ -74,6 +74,14 @@
                     </div>
                 </article>
 
+                <!--
+                    CONVENTION Motion Design (Giancarlo, 23/07/2026):
+                    Contrairement à Réseaux Sociaux/Photographie, ici 1 seule vidéo par client
+                    (pas de mini-carousel). En ajoutant de nouvelles vidéos, les ordonner ainsi :
+                    1) Vidéo verticale 1080x1350
+                    2) Historias (format vertical court)
+                    3) Vidéo horizontale
+                -->
                 <article class="project-card" data-category="motion" data-featured="true">
                     <div class="project-media">
                         <div class="media-placeholder">
@@ -277,20 +285,56 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-category="photo branding" data-featured="true">
-                    <div class="project-media">
-                        <div class="media-placeholder">
-                            <i class="fas fa-camera-retro"></i>
-                            <p>[ Espacio para Fotografía de Producto / Estudio ]</p>
-                        </div>
-                    </div>
+                <article class="project-card project-card--wide" data-category="photo branding" data-featured="true">
                     <div class="project-info">
                         <span class="project-tag">Photographie & Retouche</span>
                         <h3>Photographie de Studio & Retouche Produit</h3>
-                        <p>Prise de vue en studio (mise en lumière, composition) et retouche photo pour supports de marque, contenus réseaux sociaux et matériel print.</p>
-                        <div class="project-role">
-                            <strong>Rôle :</strong> Photographe & Retoucheur
+                        <p>Prise de vue en studio (mise en lumière, composition) et retouche photo, présentées ici par série pour un même client.</p>
+                    </div>
+                    <div class="mini-carousel">
+                        <div class="mini-carousel-item">
+                            <div class="media-placeholder mini-carousel-media">
+                                <i class="fas fa-camera-retro"></i>
+                                <p>[ Photo 1 ]</p>
+                            </div>
+                            <div class="mini-carousel-caption">
+                                <strong>[ Marque ]</strong>
+                                <span>[ Petite description de la photo ]</span>
+                            </div>
                         </div>
+                        <div class="mini-carousel-item">
+                            <div class="media-placeholder mini-carousel-media">
+                                <i class="fas fa-camera-retro"></i>
+                                <p>[ Photo 2 ]</p>
+                            </div>
+                            <div class="mini-carousel-caption">
+                                <strong>[ Marque ]</strong>
+                                <span>[ Petite description de la photo ]</span>
+                            </div>
+                        </div>
+                        <div class="mini-carousel-item">
+                            <div class="media-placeholder mini-carousel-media">
+                                <i class="fas fa-camera-retro"></i>
+                                <p>[ Photo 3 ]</p>
+                            </div>
+                            <div class="mini-carousel-caption">
+                                <strong>[ Marque ]</strong>
+                                <span>[ Petite description de la photo ]</span>
+                            </div>
+                        </div>
+                        <div class="mini-carousel-item">
+                            <div class="media-placeholder mini-carousel-media">
+                                <i class="fas fa-camera-retro"></i>
+                                <p>[ Photo 4 ]</p>
+                            </div>
+                            <div class="mini-carousel-caption">
+                                <strong>[ Marque ]</strong>
+                                <span>[ Petite description de la photo ]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-role">
+                        <strong>Rôle :</strong> Photographe & Retoucheur
                     </div>
                 </article>
 
@@ -417,6 +461,17 @@
     <footer class="footer">
         <p>&copy; 2026 Giancarlo Asián. Tous droits réservés.</p>
     </footer>
+
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <div class="lightbox-box">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <div class="lightbox-media" id="lightbox-media"></div>
+            <div class="lightbox-caption">
+                <strong id="lightbox-brand"></strong>
+                <span id="lightbox-desc"></span>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
