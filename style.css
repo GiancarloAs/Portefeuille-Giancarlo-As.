@@ -261,6 +261,93 @@ body {
     color: var(--text-muted);
 }
 
+/* --- LIGHTBOX --- */
+.mini-carousel-item {
+    cursor: pointer;
+}
+
+.mini-carousel-item:hover .mini-carousel-media {
+    border-color: var(--primary);
+}
+
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-box {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    font-size: 2rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--primary);
+}
+
+.lightbox-media {
+    aspect-ratio: 1080 / 1350;
+    width: 100%;
+    background-color: var(--bg-alt);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px;
+}
+
+.lightbox-media i {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.lightbox-caption {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.lightbox-caption strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.lightbox-caption span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
 /* --- MINI CARROUSEL (Réseaux Sociaux) --- */
 .project-card--wide {
     grid-column: 1 / -1;
@@ -277,11 +364,101 @@ body {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 10px 0 20px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.mini-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .mini-carousel-item {
-    flex: 0 0 150px;
+    flex: 0 0 220px;
     scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+    .mini-carousel-item {
+        flex: 0 0 165px;
+    }
+}
+
+/* --- Wrapper: flechas + degradado indicador de scroll --- */
+.mini-carousel-wrapper {
+    position: relative;
+}
+
+.mini-carousel-fade {
+    position: absolute;
+    top: 10px;
+    bottom: 20px;
+    width: 40px;
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 0.2s ease;
+}
+
+.fade-left {
+    left: 0;
+    background: linear-gradient(to right, var(--card-bg), transparent);
+}
+
+.fade-right {
+    right: 0;
+    background: linear-gradient(to left, var(--card-bg), transparent);
+}
+
+.mini-carousel-wrapper.at-start .fade-left,
+.mini-carousel-wrapper.at-end .fade-right {
+    opacity: 0;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    background-color: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+.carousel-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.arrow-prev {
+    left: -12px;
+}
+
+.arrow-next {
+    right: -12px;
+}
+
+/* En móvil el swipe nativo ya es suficiente, así que ocultamos las flechas
+   y dejamos el degradado un poco más angosto para no robar espacio */
+@media (max-width: 768px) {
+    .carousel-arrow {
+        display: none;
+    }
+
+    .mini-carousel-fade {
+        width: 24px;
+    }
 }
 
 .mini-carousel-media {
