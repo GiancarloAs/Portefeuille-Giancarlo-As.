@@ -282,6 +282,71 @@ body {
     color: var(--text-muted);
 }
 
+/* --- GROUP TITLES (secciones por cliente dentro de Motion Design) --- */
+.group-title {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    padding-top: 30px;
+    margin-top: 10px;
+}
+
+.group-title:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.group-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.group-title span {
+    color: var(--primary);
+}
+
+/* --- VIDEO CAROUSEL (variante del mini-carousel para videos incrustados) --- */
+.video-carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-carousel .video-embed-wrapper {
+    width: auto;
+    height: 240px;
+}
+
+.video-carousel .video-carousel-caption {
+    margin-top: 8px;
+    max-width: 260px;
+}
+
+.video-carousel .video-carousel-caption strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+.video-carousel .video-carousel-caption span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .video-carousel .video-embed-wrapper {
+        height: 190px;
+    }
+}
+
 /* --- LIGHTBOX --- */
 .mini-carousel-item {
     cursor: pointer;
