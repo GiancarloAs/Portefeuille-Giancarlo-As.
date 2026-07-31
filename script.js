@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const groupTitles = document.querySelectorAll('.group-title');
 
     function applyFilter(filterValue) {
         projectCards.forEach(card => {
@@ -20,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             card.style.display = show ? '' : 'none';
+        });
+
+        // Los títulos de sección (Noraves / Wayruro / Mayu) solo tienen sentido
+        // cuando se navega específicamente por "Motion Design".
+        groupTitles.forEach(title => {
+            const titleCategory = title.getAttribute('data-category') || '';
+            title.style.display = (filterValue === titleCategory) ? '' : 'none';
         });
     }
 
@@ -69,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Avanza aproximadamente el ancho de una imagen + separación
         function scrollByCard(direction) {
-            const item = track.querySelector('.mini-carousel-item');
+            const item = track.querySelector('.mini-carousel-item, .video-carousel-item');
             const step = item ? item.getBoundingClientRect().width + 15 : 220;
             track.scrollBy({ left: direction * step, behavior: 'smooth' });
         }
