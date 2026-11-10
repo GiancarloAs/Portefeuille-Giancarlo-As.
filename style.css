@@ -1838,3 +1838,157 @@ body.lb-open { overflow: hidden; }
 /* « hidden » doit toujours masquer, même sur les éléments en display:flex
    (ex. étiquettes pas encore lancées, onglets inactifs) */
 [hidden] { display: none !important; }
+
+
+/* =====================================================================
+   PROJETS EN « CHAPITRES » — même langage que la portada
+   ===================================================================== */
+.projects-grid .project-card--wide:not(.cta-card) {
+    --surface: var(--bg);
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    padding: clamp(36px, 4.5vw, 64px) 0 clamp(8px, 1vw, 16px);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+    column-gap: clamp(28px, 5vw, 80px);
+    align-items: start;
+}
+
+.projects-grid .project-card--wide:not(.cta-card) > * { grid-column: 1 / -1; }
+.projects-grid .project-card--wide:not(.cta-card) > .project-info { display: contents; }
+.projects-grid .project-card--wide:not(.cta-card) .project-info > * { grid-column: 1; }
+
+.projects-grid .project-card--wide:not(.cta-card) .project-info > h3 { grid-row: 1; margin: 0 0 18px; }
+.projects-grid .project-card--wide:not(.cta-card) .project-info > .project-tag { grid-column: 2; grid-row: 1; align-self: end; padding-bottom: 22px; }
+.projects-grid .project-card--wide:not(.cta-card) .project-info > p { grid-row: 2; max-width: 62ch; margin: 0 0 22px; }
+.projects-grid .project-card--wide:not(.cta-card) > .project-role {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    margin: 0 0 22px;
+    padding-top: 12px;
+}
+
+/* Titre : CLIENT condensé + projet en italique */
+.project-info h3.ct {
+    font-family: var(--display);
+    font-weight: 900;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height: 0.9;
+    font-size: clamp(2.6rem, 5.6vw, 5rem);
+}
+
+.ct-head { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.ct-head > span { display: inline-block; }
+
+.ct-it {
+    display: block;
+    font-family: var(--script);
+    font-stretch: 100%;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    font-size: 0.62em;
+    line-height: 1.08;
+    margin-top: 0.12em;
+    padding: 0 0.1em 0.08em 0;
+}
+
+.project-card:not(.project-card--wide) .project-info h3.ct { font-size: clamp(2rem, 2.6vw, 2.4rem); }
+.project-card:not(.project-card--wide) .ct-it { font-size: 0.72em; }
+
+/* Révélation au défilement : le client monte, l'italique s'écrit, les visuels glissent */
+.chapters-anim .project-card:not(.cta-card) .ct-head > span {
+    transform: translateY(105%);
+    transition: transform 0.9s var(--ease-out);
+}
+.chapters-anim .project-card:not(.cta-card) .ct-it {
+    clip-path: inset(-0.2em 100% -0.3em 0);
+    transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.25s;
+}
+.chapters-anim .project-card--wide:not(.cta-card) .mini-carousel-wrapper,
+.chapters-anim .project-card--wide:not(.cta-card) .reel-media,
+.chapters-anim .project-card--wide:not(.cta-card) .site-preview,
+.chapters-anim .project-card--wide:not(.cta-card) .subpanel {
+    opacity: 0;
+    transform: translateX(48px);
+    transition: opacity 0.9s var(--ease-out) 0.35s, transform 1.1s var(--ease-out) 0.35s;
+}
+.chapters-anim .project-card:not(.cta-card).in-view .ct-head > span { transform: none; }
+.chapters-anim .project-card:not(.cta-card).in-view .ct-it { clip-path: inset(-0.2em -0.2em -0.3em 0); }
+.chapters-anim .project-card--wide:not(.cta-card).in-view .mini-carousel-wrapper,
+.chapters-anim .project-card--wide:not(.cta-card).in-view .reel-media,
+.chapters-anim .project-card--wide:not(.cta-card).in-view .site-preview,
+.chapters-anim .project-card--wide:not(.cta-card).in-view .subpanel { opacity: 1; transform: none; }
+
+/* Entrée échelonnée au changement de filtre */
+.project-card.is-entering { animation: chapter-in 0.6s var(--ease-out) both; }
+@keyframes chapter-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* Compteur des filtres */
+.filter-count {
+    font-size: 0.68em;
+    font-weight: 600;
+    margin-left: 4px;
+    vertical-align: 0.7em;
+    opacity: 0.6;
+}
+
+/* Titres de client (filtre Motion) dans la même voix */
+.group-title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--red);
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    padding-top: clamp(40px, 5vw, 72px);
+}
+.group-title + .project-card--wide { border-top: 0; padding-top: 12px; }
+
+/* Bulle qui suit le curseur */
+.cursor-bubble {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1500;
+    pointer-events: none;
+    width: 84px;
+    height: 84px;
+    margin: -42px 0 0 -42px;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    font-family: var(--script);
+    font-size: 1.35rem;
+    opacity: 0;
+    scale: 0.3;
+    transition: opacity 0.25s, scale 0.35s var(--ease-back), background-color 0.2s, color 0.2s;
+}
+.cursor-bubble.on { opacity: 1; scale: 1; }
+.cursor-bubble.is-video { background: var(--red); color: var(--cream); }
+.about .cursor-bubble { display: none; }
+
+@media (max-width: 860px) {
+    .projects-grid .project-card--wide:not(.cta-card) { grid-template-columns: 1fr; }
+    .projects-grid .project-card--wide:not(.cta-card) .project-info > .project-tag { grid-column: 1; grid-row: auto; order: -1; padding: 0 0 12px; }
+    .projects-grid .project-card--wide:not(.cta-card) .project-info > h3,
+    .projects-grid .project-card--wide:not(.cta-card) .project-info > p { grid-row: auto; }
+    .projects-grid .project-card--wide:not(.cta-card) > .project-role { grid-column: 1; grid-row: auto; margin: 0; }
+    .project-info h3.ct { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card.is-entering { animation: none; }
+}
+
+.projects-grid .project-card--wide .reel-media { width: 100%; justify-self: center; }
+/* Dans les chapitres, les visuels partent de la gauche (alignés au titre) */
+.projects-grid .project-card--wide:not(.cta-card) .mini-carousel > :first-child { margin-left: 0; }
