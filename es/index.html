@@ -37,7 +37,7 @@
     <link rel="preload" href="../fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=20261110">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="application/ld+json">
@@ -650,84 +650,87 @@
                                 <span>Pollo Navideño — edición Navidad</span>
                             </div>
                         </div>
-                        <!-- Étiquettes pas encore lancées : masquées (retirer « hidden » pour les publier) -->
-                        <div class="mini-carousel-item" hidden>
+                        <!-- Étiquettes pas encore lancées : gardées dans <template> (jamais affichées).
+                             Pour en publier une, déplacer son bloc hors du <template>. -->
+                        <template class="etiquetas-a-publicar">
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 816 / 1000;"><img src="../ETIQUETAS/etiqueta-molleja-parrillera.webp" data-full="../ETIQUETAS/etiqueta-molleja-parrillera-lg.webp" alt="Noraves — Etiqueta Molleja parrillera" width="816" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Molleja parrillera</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 816 / 1000;"><img src="../ETIQUETAS/etiqueta-filete-parrillero.webp" data-full="../ETIQUETAS/etiqueta-filete-parrillero-lg.webp" alt="Noraves — Etiqueta Filete parrillero" width="816" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Filete parrillero</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 815 / 1000;"><img src="../ETIQUETAS/etiqueta-corazon-anticuchero.webp" data-full="../ETIQUETAS/etiqueta-corazon-anticuchero-lg.webp" alt="Noraves — Etiqueta Corazón anticuchero" width="815" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Corazón anticuchero</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 1000 / 800;"><img src="../ETIQUETAS/etiqueta-pollada-criolla.webp" data-full="../ETIQUETAS/etiqueta-pollada-criolla-lg.webp" alt="Noraves — Etiqueta Pollada criolla" width="1000" height="800" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Pollada criolla</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 676 / 1000;"><img src="../ETIQUETAS/etiqueta-chicharron-hamburguesa.webp" data-full="../ETIQUETAS/etiqueta-chicharron-hamburguesa-lg.webp" alt="Noraves — Etiqueta Chicharrón y Hamburguesa premium" width="676" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Chicharrón y Hamburguesa premium</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 687 / 1000;"><img src="../ETIQUETAS/etiqueta-nuggets-alitas-bouchet.webp" data-full="../ETIQUETAS/etiqueta-nuggets-alitas-bouchet-lg.webp" alt="Noraves — Etiqueta Nuggets y Alitas Bouchet" width="687" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Nuggets y Alitas Bouchet</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 775 / 1000;"><img src="../ETIQUETAS/etiqueta-pollo-a-la-brasa.webp" data-full="../ETIQUETAS/etiqueta-pollo-a-la-brasa-lg.webp" alt="Noraves — Etiqueta Pollo sabor a la Brasa" width="775" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Pollo sabor a la Brasa</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 341 / 1000;"><img src="../ETIQUETAS/etiqueta-lomito-filetillo.webp" data-full="../ETIQUETAS/etiqueta-lomito-filetillo-lg.webp" alt="Noraves — Etiqueta Lomito y Filetillo" width="341" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Lomito y Filetillo</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 876 / 1000;"><img src="../ETIQUETAS/etiqueta-alitas-korean-bbq.webp" data-full="../ETIQUETAS/etiqueta-alitas-korean-bbq-lg.webp" alt="Noraves — Etiqueta Alitas korean BBQ picante" width="876" height="1000" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Alitas korean BBQ picante</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 1000 / 925;"><img src="../ETIQUETAS/etiqueta-milanesa-suprema.webp" data-full="../ETIQUETAS/etiqueta-milanesa-suprema-lg.webp" alt="Noraves — Etiqueta Sábana de Milanesa y Suprema" width="1000" height="925" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Sábana de Milanesa y Suprema</span>
                             </div>
                         </div>
-                        <div class="mini-carousel-item" hidden>
+                        <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 1000 / 341;"><img src="../ETIQUETAS/etiqueta-bolsa-pollo-superior.webp" data-full="../ETIQUETAS/etiqueta-bolsa-pollo-superior-lg.webp" alt="Noraves — Troquel — bolsa Pollo Superior" width="1000" height="341" loading="lazy" decoding="async"></div>
                             <div class="mini-carousel-caption">
                                 <strong>Noraves</strong>
                                 <span>Troquel — bolsa Pollo Superior</span>
                             </div>
                         </div>
+                        </template>
                     </div>
                     <div class="project-role">
                         <strong>Rol:</strong> Packaging &amp; Brand Designer — Supervisión de impresión
@@ -2523,6 +2526,6 @@
         </div>
     </div>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20261110"></script>
 </body>
 </html>
