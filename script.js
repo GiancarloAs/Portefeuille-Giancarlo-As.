@@ -465,6 +465,43 @@ document.addEventListener('DOMContentLoaded', () => {
         st.addEventListener('mouseenter', () => { let k = 0; const t = setInterval(() => { show(++k % frames.length); if (k >= frames.length * 2) { clearInterval(t); show(0); } }, 110); });
     });
 
+    // --- ONGLETS INTERNES (Mockups / Processus / Ouverture) ---
+    document.querySelectorAll('.subtabs').forEach((list) => {
+        const tabs = [...list.querySelectorAll('[role="tab"]')];
+        const select = (tab, focus) => {
+            tabs.forEach((t) => {
+                const on = t === tab;
+                t.classList.toggle('active', on);
+                t.setAttribute('aria-selected', String(on));
+                t.tabIndex = on ? 0 : -1;
+                const panel = document.getElementById(t.getAttribute('aria-controls'));
+                if (!panel) return;
+                if (!on) {
+                    panel.hidden = true;
+                    panel.querySelectorAll('video').forEach((v) => v.pause());
+                    return;
+                }
+                panel.hidden = false;
+                panel.classList.remove('is-entering');
+                void panel.offsetWidth;
+                panel.classList.add('is-entering');
+                // recalcule flèches et dégradés du carrousel devenu visible
+                panel.querySelectorAll('.mini-carousel').forEach((c) => c.dispatchEvent(new Event('scroll')));
+                window.dispatchEvent(new Event('resize'));
+            });
+            if (focus) tab.focus();
+        };
+        tabs.forEach((t, i) => {
+            t.addEventListener('click', () => select(t));
+            t.addEventListener('keydown', (e) => {
+                const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+                if (!d) return;
+                e.preventDefault();
+                select(tabs[(i + d + tabs.length) % tabs.length], true);
+            });
+        });
+    });
+
     // --- TITRES : la partie calligraphiée « s'écrit » à l'apparition ---
     const scripts = document.querySelectorAll('.section-title .t-script, .about-title .t-script, .contact-title .t-script');
     scripts.forEach((el) => el.classList.add('reveal-script'));
