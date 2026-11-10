@@ -3,9 +3,9 @@
 // y data-category de las tarjetas, sin importar cuántas categorías haya.
 // Textes de l'interface selon la langue de la page (fr / es / en)
 const UI_TEXT = {
-    fr: { prev: 'Précédent', next: 'Suivant', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu' },
-    es: { prev: 'Anterior', next: 'Siguiente', openMenu: 'Abrir el menú', closeMenu: 'Cerrar el menú' },
-    en: { prev: 'Previous', next: 'Next', openMenu: 'Open menu', closeMenu: 'Close menu' }
+    fr: { prev: 'Précédent', next: 'Suivant', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu', view: 'Voir', play: 'Lire' },
+    es: { prev: 'Anterior', next: 'Siguiente', openMenu: 'Abrir el menú', closeMenu: 'Cerrar el menú', view: 'Ver', play: 'Play' },
+    en: { prev: 'Previous', next: 'Next', openMenu: 'Open menu', closeMenu: 'Close menu', view: 'View', play: 'Play' }
 };
 const T = UI_TEXT[(document.documentElement.lang || 'fr').slice(0, 2)] || UI_TEXT.fr;
 
@@ -44,7 +44,29 @@ document.addEventListener('DOMContentLoaded', () => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             applyFilter(button.getAttribute('data-filter'));
+            // Les projets du filtre choisi entrent l'un après l'autre
+            let k = 0;
+            projectCards.forEach((card) => {
+                card.classList.remove('is-entering');
+                if (card.style.display === 'none') return;
+                void card.offsetWidth;
+                card.style.animationDelay = Math.min(k++, 5) * 70 + 'ms';
+                card.classList.add('is-entering');
+            });
         });
+    });
+
+    // Nombre de projets par filtre, affiché en exposant
+    filterButtons.forEach((button) => {
+        const f = button.getAttribute('data-filter');
+        const n = [...projectCards].filter((c) => f === 'all'
+            ? c.getAttribute('data-featured') === 'true'
+            : (c.getAttribute('data-category') || '').split(' ').includes(f)).length;
+        const sup = document.createElement('sup');
+        sup.className = 'filter-count';
+        sup.textContent = n;
+        sup.setAttribute('aria-hidden', 'true');
+        button.append(sup);
     });
 
     // Aplica el filtro "Tous" al cargar la página
@@ -468,6 +490,58 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(spin, 2600);
         st.addEventListener('mouseenter', () => { let k = 0; const t = setInterval(() => { show(++k % frames.length); if (k >= frames.length * 2) { clearInterval(t); show(0); } }, 110); });
     });
+
+    // --- CHAPITRES : chaque projet reprend la typo de la portade ---
+    // « Client — Projet » devient CLIENT en condensée + « Projet » en italique.
+    const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    document.querySelectorAll('.project-card:not(.cta-card) .project-info h3').forEach((h) => {
+        const txt = h.textContent.replace(/\s+/g, ' ').trim();
+        const i = txt.indexOf(' — ');
+        const head = i > -1 ? txt.slice(0, i) : txt;
+        const rest = i > -1 ? txt.slice(i + 3) : '';
+        h.classList.add('ct');
+        h.innerHTML = `<span class="ct-head"><span>${esc(head)}</span></span>` +
+            (rest ? `<span class="ct-it">${esc(rest)}</span>` : '');
+    });
+
+    const chapters = document.querySelectorAll('.project-card:not(.cta-card)');
+    if ('IntersectionObserver' in window && !reduceMotion) {
+        document.body.classList.add('chapters-anim');
+        const cio = new IntersectionObserver((entries) => {
+            entries.forEach((en) => {
+                if (en.isIntersecting) { en.target.classList.add('in-view'); cio.unobserve(en.target); }
+            });
+        }, { threshold: 0.12 });
+        chapters.forEach((c) => cio.observe(c));
+    }
+
+    // --- BULLE « Voir / Play » qui suit le curseur sur les visuels ---
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+        const bubble = document.createElement('div');
+        bubble.className = 'cursor-bubble';
+        bubble.setAttribute('aria-hidden', 'true');
+        document.body.append(bubble);
+        let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+        const loop = () => {
+            x += (tx - x) * 0.22; y += (ty - y) * 0.22;
+            bubble.style.transform = `translate(${x}px, ${y}px)`;
+            raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.3 ? requestAnimationFrame(loop) : 0;
+        };
+        document.addEventListener('pointermove', (e) => {
+            const hit = e.target.closest('.mini-carousel-media, .video-thumb, .project-media');
+            const lbOpen = document.body.classList.contains('lb-open');
+            if (!hit || lbOpen) { bubble.classList.remove('on'); return; }
+            const isVideo = !!e.target.closest('.video-thumb, .video-embed-wrapper');
+            bubble.textContent = isVideo ? T.play : T.view;
+            bubble.classList.toggle('is-video', isVideo);
+            if (!bubble.classList.contains('on')) { x = e.clientX; y = e.clientY; }
+            tx = e.clientX; ty = e.clientY;
+            bubble.classList.add('on');
+            if (!raf) raf = requestAnimationFrame(loop);
+        }, { passive: true });
+        document.addEventListener('pointerleave', () => bubble.classList.remove('on'));
+        window.addEventListener('scroll', () => bubble.classList.remove('on'), { passive: true });
+    }
 
     // --- MINIATURES YOUTUBE ---
     // Sans miniature HD, YouTube renvoie une image grise de 120 px (pas d'erreur) :
