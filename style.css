@@ -1977,7 +1977,7 @@ body.lb-open { overflow: hidden; }
 .about .cursor-bubble { display: none; }
 
 @media (max-width: 860px) {
-    .projects-grid .project-card--wide:not(.cta-card) { grid-template-columns: 1fr; }
+    .projects-grid .project-card--wide:not(.cta-card) { grid-template-columns: minmax(0, 1fr); }
     .projects-grid .project-card--wide:not(.cta-card) .project-info > .project-tag { grid-column: 1; grid-row: auto; order: -1; padding: 0 0 12px; }
     .projects-grid .project-card--wide:not(.cta-card) .project-info > h3,
     .projects-grid .project-card--wide:not(.cta-card) .project-info > p { grid-row: auto; }
@@ -2067,3 +2067,8 @@ body.lb-open { overflow: hidden; }
 .projects-grid .project-card--wide.band .fade-right { background: linear-gradient(to left, var(--wine), transparent); }
 .projects-grid .project-card--wide:not(.band):not(.cta-card) .fade-left { background: linear-gradient(to right, var(--bg), transparent); }
 .projects-grid .project-card--wide:not(.band):not(.cta-card) .fade-right { background: linear-gradient(to left, var(--bg), transparent); }
+
+/* Les enfants d'une grille ne doivent jamais s'élargir au contenu (sinon le carrousel ne défile plus) */
+.projects-grid .project-card--wide:not(.cta-card) > *,
+.projects-grid .project-card--wide:not(.cta-card) .subpanel,
+.mini-carousel-wrapper { min-width: 0; max-width: 100%; }
