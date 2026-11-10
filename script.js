@@ -465,6 +465,23 @@ document.addEventListener('DOMContentLoaded', () => {
         st.addEventListener('mouseenter', () => { let k = 0; const t = setInterval(() => { show(++k % frames.length); if (k >= frames.length * 2) { clearInterval(t); show(0); } }, 110); });
     });
 
+    // --- MINIATURES YOUTUBE ---
+    // Sans miniature HD, YouTube renvoie une image grise de 120 px (pas d'erreur) :
+    // on la détecte et on passe à la qualité suivante disponible.
+    document.querySelectorAll('.video-thumb img').forEach((img) => {
+        const id = img.closest('.video-thumb').dataset.videoId;
+        if (!id) return;
+        const chain = ['maxresdefault', 'sddefault', 'hqdefault'];
+        const check = () => {
+            if (img.naturalWidth > 120) return;
+            const cur = chain.findIndex((q) => img.src.includes('/' + q + '.'));
+            const next = chain[cur + 1];
+            if (next) img.src = `https://i.ytimg.com/vi/${id}/${next}.jpg`;
+        };
+        img.addEventListener('load', check);
+        if (img.complete && img.naturalWidth) check();
+    });
+
     // --- ONGLETS INTERNES (Mockups / Processus / Ouverture) ---
     document.querySelectorAll('.subtabs').forEach((list) => {
         const tabs = [...list.querySelectorAll('[role="tab"]')];
