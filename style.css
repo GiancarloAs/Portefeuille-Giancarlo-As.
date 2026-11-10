@@ -2042,3 +2042,6 @@ body.lb-open { overflow: hidden; }
 
 /* Bulle plus discrète */
 .cursor-bubble { width: 58px; height: 58px; margin: -29px 0 0 -29px; font-size: 1.05rem; }
+
+.photo-protect img { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.lb-protect .lb-img { pointer-events: none; }

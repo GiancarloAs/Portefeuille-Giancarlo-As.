@@ -309,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const item = e.target.closest('.mini-carousel-item');
+        if (item && item.closest('.photo-protect')) return;
         if (item) openViewer(item);
     });
 
@@ -555,6 +556,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('pointerleave', () => bubble.classList.remove('on'));
         window.addEventListener('scroll', () => bubble.classList.remove('on'), { passive: true });
     }
+
+    // --- PHOTOS PROTÉGÉES : pas de clic droit ni de glisser-déposer ---
+    document.querySelectorAll('.photo-protect img').forEach((img) => {
+        img.addEventListener('contextmenu', (e) => e.preventDefault());
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
 
     // --- MINIATURES YOUTUBE ---
     // Sans miniature HD, YouTube renvoie une image grise de 120 px (pas d'erreur) :
