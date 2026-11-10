@@ -157,6 +157,7 @@
             <div class="filter-buttons" role="toolbar" aria-label="Filter projects">
                 <button class="filter-btn active" data-filter="all">Highlights</button>
                 <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="retail">Retail &amp; packaging</button>
                 <button class="filter-btn" data-filter="motion">Motion design</button>
                 <button class="filter-btn" data-filter="redes">Social media</button>
                 <button class="filter-btn" data-filter="photo">Photography</button>
@@ -315,18 +316,67 @@
                 </article>
 
                 <!-- Retail : rebranding des magasins Noraves (dossier TIENDAS/) -->
-                <article class="project-card project-card--wide" data-category="branding" data-featured="true">
+                <article class="project-card project-card--wide" data-category="retail" data-featured="true">
                     <div class="project-info">
                         <span class="project-tag">Retail / Store rebranding</span>
                         <h3>Noraves — Rebranding 11 stores</h3>
-                        <p>11 stores rebranded so far, including Trujillo, Chimbote, Chiclayo and Piura. I run the project end to end: on-site measurements, interior design and brand application (façades, windows, walls, signage, checkout), supplier coordination from quote to installation, on-site supervision and final sign-off.</p>
+                        <p>11 stores rebranded so far, including Trujillo, Chimbote, Chiclayo and Piura; below, the opening of the Primavera store. I run the project end to end: on-site measurements, interior design and brand application (façades, windows, walls, signage, checkout), supplier coordination from quote to installation, on-site supervision and final sign-off.</p>
                     </div>
                     <div class="subtabs" role="tablist" aria-label="Project stages">
-                        <button type="button" class="subtab-btn active" role="tab" id="tab-tiendas-mockups" aria-controls="tiendas-mockups" aria-selected="true">Mockups</button>
+                        <button type="button" class="subtab-btn active" role="tab" id="tab-tiendas-apertura" aria-controls="tiendas-apertura" aria-selected="true">Opening — Primavera store</button>
                         <button type="button" class="subtab-btn" role="tab" id="tab-tiendas-proceso" aria-controls="tiendas-proceso" aria-selected="false" tabindex="-1">Process</button>
-                        <button type="button" class="subtab-btn" role="tab" id="tab-tiendas-apertura" aria-controls="tiendas-apertura" aria-selected="false" tabindex="-1">Opening</button>
+                        <button type="button" class="subtab-btn" role="tab" id="tab-tiendas-mockups" aria-controls="tiendas-mockups" aria-selected="false" tabindex="-1">Mockups</button>
                     </div>
-                    <div class="subpanel" id="tiendas-mockups" role="tabpanel" aria-labelledby="tab-tiendas-mockups">
+                    <div class="subpanel" id="tiendas-apertura" role="tabpanel" aria-labelledby="tab-tiendas-apertura">
+                        <div class="mini-carousel video-carousel">
+                        <div class="mini-carousel-item">
+                            <div class="mini-carousel-media" style="aspect-ratio: 675 / 900;"><img src="../TIENDAS/tienda-ouverture.webp" data-full="../TIENDAS/tienda-ouverture-lg.webp" alt="Noraves — Store: Primavera, opening day" width="675" height="900" loading="lazy" decoding="async"></div>
+                            <div class="mini-carousel-caption">
+                                <strong>Noraves</strong>
+                                <span>Primavera store — opening day</span>
+                            </div>
+                        </div>
+                        <div class="mini-carousel-item">
+                            <div class="mini-carousel-media" style="aspect-ratio: 675 / 900;"><img src="../TIENDAS/tienda-caisse.webp" data-full="../TIENDAS/tienda-caisse-lg.webp" alt="Noraves — Store: Primavera, checkout area" width="675" height="900" loading="lazy" decoding="async"></div>
+                            <div class="mini-carousel-caption">
+                                <strong>Noraves</strong>
+                                <span>Primavera store — checkout area</span>
+                            </div>
+                        </div>
+                        <div class="video-carousel-item">
+                            <div class="video-embed-wrapper" style="aspect-ratio: 9 / 16;">
+                                <a class="video-thumb" href="https://www.youtube.com/shorts/4FxAxB_sbQM" data-video-id="4FxAxB_sbQM" target="_blank" rel="noopener" aria-label="Play video: Noraves — Primavera store, opening ad"><img src="https://i.ytimg.com/vi/4FxAxB_sbQM/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"><i class="fas fa-play"></i></span></a>
+                            </div>
+                            <div class="video-carousel-caption">
+                                <strong>Noraves</strong>
+                                <span>Primavera store — opening ad</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="subpanel" id="tiendas-proceso" role="tabpanel" aria-labelledby="tab-tiendas-proceso" hidden>
+                        <div class="mini-carousel video-carousel">
+                        <div class="video-carousel-item">
+                            <div class="video-embed-wrapper" style="aspect-ratio: 16 / 9;">
+                                <video class="local-video" src="../TIENDAS/tiendas-recorrido-01.mp4" poster="../TIENDAS/tiendas-recorrido-01-poster.webp" controls playsinline preload="none" aria-label="Tour of a rebranded store"></video>
+                            </div>
+                            <div class="video-carousel-caption">
+                                <strong>Noraves</strong>
+                                <span>Tour of a rebranded store</span>
+                            </div>
+                        </div>
+                        <div class="video-carousel-item">
+                            <div class="video-embed-wrapper" style="aspect-ratio: 16 / 9;">
+                                <video class="local-video" src="../TIENDAS/tiendas-recorrido-02.mp4" poster="../TIENDAS/tiendas-recorrido-02-poster.webp" controls playsinline preload="none" aria-label="Store preview"></video>
+                            </div>
+                            <div class="video-carousel-caption">
+                                <strong>Noraves</strong>
+                                <span>Store preview</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="subpanel" id="tiendas-mockups" role="tabpanel" aria-labelledby="tab-tiendas-mockups" hidden>
                         <div class="mini-carousel">
                         <div class="mini-carousel-item">
                             <div class="mini-carousel-media" style="aspect-ratio: 672 / 900;"><img src="../TIENDAS/tienda-facade-angle.webp" data-full="../TIENDAS/tienda-facade-angle-lg.webp" alt="Noraves — Store: Corner façade — proposal" width="672" height="900" loading="lazy" decoding="async"></div>
@@ -393,62 +443,13 @@
                         </div>
                         </div>
                     </div>
-                    <div class="subpanel" id="tiendas-proceso" role="tabpanel" aria-labelledby="tab-tiendas-proceso" hidden>
-                        <div class="mini-carousel video-carousel">
-                        <div class="video-carousel-item">
-                            <div class="video-embed-wrapper" style="aspect-ratio: 16 / 9;">
-                                <video class="local-video" src="../TIENDAS/tiendas-recorrido-01.mp4" poster="../TIENDAS/tiendas-recorrido-01-poster.webp" controls playsinline preload="none" aria-label="Tour of a rebranded store"></video>
-                            </div>
-                            <div class="video-carousel-caption">
-                                <strong>Noraves</strong>
-                                <span>Tour of a rebranded store</span>
-                            </div>
-                        </div>
-                        <div class="video-carousel-item">
-                            <div class="video-embed-wrapper" style="aspect-ratio: 16 / 9;">
-                                <video class="local-video" src="../TIENDAS/tiendas-recorrido-02.mp4" poster="../TIENDAS/tiendas-recorrido-02-poster.webp" controls playsinline preload="none" aria-label="Store preview"></video>
-                            </div>
-                            <div class="video-carousel-caption">
-                                <strong>Noraves</strong>
-                                <span>Store preview</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="subpanel" id="tiendas-apertura" role="tabpanel" aria-labelledby="tab-tiendas-apertura" hidden>
-                        <div class="mini-carousel video-carousel">
-                        <div class="mini-carousel-item">
-                            <div class="mini-carousel-media" style="aspect-ratio: 675 / 900;"><img src="../TIENDAS/tienda-ouverture.webp" data-full="../TIENDAS/tienda-ouverture-lg.webp" alt="Noraves — Store: Opening day — real photo" width="675" height="900" loading="lazy" decoding="async"></div>
-                            <div class="mini-carousel-caption">
-                                <strong>Noraves</strong>
-                                <span>Opening day — real photo</span>
-                            </div>
-                        </div>
-                        <div class="mini-carousel-item">
-                            <div class="mini-carousel-media" style="aspect-ratio: 675 / 900;"><img src="../TIENDAS/tienda-caisse.webp" data-full="../TIENDAS/tienda-caisse-lg.webp" alt="Noraves — Store: Checkout area — real photo" width="675" height="900" loading="lazy" decoding="async"></div>
-                            <div class="mini-carousel-caption">
-                                <strong>Noraves</strong>
-                                <span>Checkout area — real photo</span>
-                            </div>
-                        </div>
-                        <div class="video-carousel-item">
-                            <div class="video-embed-wrapper" style="aspect-ratio: 9 / 16;">
-                                <a class="video-thumb" href="https://www.youtube.com/shorts/4FxAxB_sbQM" data-video-id="4FxAxB_sbQM" target="_blank" rel="noopener" aria-label="Play video: Noraves — Opening ad"><img src="https://i.ytimg.com/vi/4FxAxB_sbQM/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"><i class="fas fa-play"></i></span></a>
-                            </div>
-                            <div class="video-carousel-caption">
-                                <strong>Noraves</strong>
-                                <span>Opening ad</span>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
                     <div class="project-role">
                         <strong>Role:</strong> Interior design &amp; retail branding — Measurements, supplier coordination, supervision and sign-off
                     </div>
                 </article>
 
                 <!-- Retail : affiches A4 de prix pour les magasins Noraves (dossier AFICHES/) -->
-                <article class="project-card project-card--wide" data-category="branding" data-featured="true">
+                <article class="project-card project-card--wide" data-category="retail" data-featured="true">
                     <div class="project-info">
                         <span class="project-tag">Retail / A4 posters</span>
                         <h3>Noraves — In-store price posters</h3>
@@ -546,7 +547,7 @@
                 </article>
 
                 <!-- Retail : affiches grand format 50 × 70 cm (dossier AFICHES/) -->
-                <article class="project-card project-card--wide" data-category="branding">
+                <article class="project-card project-card--wide" data-category="retail">
                     <div class="project-info">
                         <span class="project-tag">Retail / 50 × 70 cm posters</span>
                         <h3>Noraves — Large-format posters</h3>
@@ -602,7 +603,7 @@
                 </article>
 
                 <!-- Packaging : étiquettes produits Noraves (dossier ETIQUETAS/) -->
-                <article class="project-card project-card--wide" data-category="branding" data-featured="true">
+                <article class="project-card project-card--wide" data-category="retail" data-featured="true">
                     <div class="project-info">
                         <span class="project-tag">Branding / Packaging</span>
                         <h3>Noraves — Product labels</h3>
