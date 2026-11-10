@@ -517,13 +517,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const chapters = document.querySelectorAll('.project-card:not(.cta-card)');
-    if ('IntersectionObserver' in window && !reduceMotion) {
+    // Révélation seulement sur grand écran avec souris : sur mobile tout est visible tout de suite
+    const bigScreen = window.matchMedia('(min-width: 861px) and (hover: hover) and (pointer: fine)').matches;
+    if ('IntersectionObserver' in window && !reduceMotion && bigScreen) {
         document.body.classList.add('chapters-anim');
         const cio = new IntersectionObserver((entries) => {
             entries.forEach((en) => {
                 if (en.isIntersecting) { en.target.classList.add('in-view'); cio.unobserve(en.target); }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
         // Quatre façons d'entrer, en alternance, pour éviter la répétition
         chapters.forEach((c, i) => {
             const v = i % 4;
