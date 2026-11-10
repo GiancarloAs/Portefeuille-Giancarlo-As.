@@ -517,15 +517,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const chapters = document.querySelectorAll('.project-card:not(.cta-card)');
-    // Révélation seulement sur grand écran avec souris : sur mobile tout est visible tout de suite
-    const bigScreen = window.matchMedia('(min-width: 861px) and (hover: hover) and (pointer: fine)').matches;
-    if ('IntersectionObserver' in window && !reduceMotion && bigScreen) {
+    // Chaque élément s'anime quand IL entre à l'écran (titre d'un côté, visuels de l'autre),
+    // sur ordinateur comme sur mobile.
+    if ('IntersectionObserver' in window && !reduceMotion) {
         document.body.classList.add('chapters-anim');
-        const cio = new IntersectionObserver((entries) => {
+        const once = (cls, opts) => new IntersectionObserver((entries, obs) => {
             entries.forEach((en) => {
-                if (en.isIntersecting) { en.target.classList.add('in-view'); cio.unobserve(en.target); }
+                if (!en.isIntersecting) return;
+                const t = en.target;
+                (cls === 'in-view' ? t.closest('.project-card') : t).classList.add(cls);
+                obs.unobserve(t);
             });
-        }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+        }, opts);
+        const titleIO = once('in-view', { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+        const visualIO = once('v-in', { threshold: 0, rootMargin: '0px 0px -8% 0px' });
         // Quatre façons d'entrer, en alternance, pour éviter la répétition
         chapters.forEach((c, i) => {
             const v = i % 4;
@@ -538,7 +543,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         : `<span class="ch" style="--i:${n++}">${esc(ch)}</span>`).join('');
                 }
             }
-            cio.observe(c);
+            const h = c.querySelector('.project-info h3') || c;
+            titleIO.observe(h);
+            c.querySelectorAll('.mini-carousel-wrapper, .reel-media, .site-preview, .subpanel').forEach((el) => visualIO.observe(el));
+        });
+        // Un onglet ou un filtre peut révéler un visuel déjà passé : on l'affiche tout de suite
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.subtab-btn, .filter-btn')) return;
+            requestAnimationFrame(() => document.querySelectorAll('.subpanel:not([hidden]), .project-card:not([style*="none"]) .mini-carousel-wrapper')
+                .forEach((el) => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('v-in'); }));
         });
     }
 
