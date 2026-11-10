@@ -1834,3 +1834,7 @@ body.lb-open { overflow: hidden; }
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: none; }
 }
+
+/* « hidden » doit toujours masquer, même sur les éléments en display:flex
+   (ex. étiquettes pas encore lancées, onglets inactifs) */
+[hidden] { display: none !important; }
