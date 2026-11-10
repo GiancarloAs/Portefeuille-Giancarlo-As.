@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nodes = track
             ? [...track.querySelectorAll(':scope > .mini-carousel-item, :scope > .video-carousel-item')]
             : [node];
-        return nodes.map(toEntry).filter(Boolean);
+        return nodes.filter((n) => !n.hidden).map(toEntry).filter(Boolean);
     }
 
     // ----- zoom -----
