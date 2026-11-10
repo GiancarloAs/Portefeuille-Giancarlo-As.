@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.addEventListener('click', () => scrollByCard(1));
         track.addEventListener('scroll', updateEdges);
         window.addEventListener('resize', updateEdges);
+        // Une carte masquée par un filtre mesure 0 au chargement : on recalcule
+        // dès que le carrousel devient visible ou change de taille.
+        if ('ResizeObserver' in window) new ResizeObserver(updateEdges).observe(track);
+        track.querySelectorAll('img').forEach((img) => img.addEventListener('load', updateEdges));
 
         updateEdges();
     });
