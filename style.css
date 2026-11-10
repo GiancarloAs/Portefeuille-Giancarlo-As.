@@ -2045,3 +2045,25 @@ body.lb-open { overflow: hidden; }
 
 .photo-protect img { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .lb-protect .lb-img { pointer-events: none; }
+
+/* Bande vin à pleine largeur, un projet sur deux */
+.projects-grid .project-card--wide.band:not(.cta-card) {
+    --surface: var(--wine);
+    position: relative;
+    border-top-color: transparent;
+    padding-bottom: clamp(36px, 4.5vw, 64px);
+    margin-bottom: 0;
+}
+.projects-grid .project-card--wide.band:not(.cta-card)::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(50% - 50vw);
+    background: var(--wine);
+    z-index: -1;
+}
+.projects-grid .project-card--wide.band:not(.cta-card) + .project-card--wide { border-top-color: transparent; }
+.projects { position: relative; z-index: 0; overflow-x: clip; }
+.projects-grid .project-card--wide.band .fade-left { background: linear-gradient(to right, var(--wine), transparent); }
+.projects-grid .project-card--wide.band .fade-right { background: linear-gradient(to left, var(--wine), transparent); }
+.projects-grid .project-card--wide:not(.band):not(.cta-card) .fade-left { background: linear-gradient(to right, var(--bg), transparent); }
+.projects-grid .project-card--wide:not(.band):not(.cta-card) .fade-right { background: linear-gradient(to left, var(--bg), transparent); }

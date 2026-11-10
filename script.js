@@ -39,11 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Alterne fond sombre / bande vin entre les projets visibles
+    function stripe() {
+        let n = 0;
+        projectCards.forEach((c) => {
+            const on = c.style.display !== 'none' && !c.classList.contains('cta-card') && c.classList.contains('project-card--wide');
+            c.classList.toggle('band', on && n++ % 2 === 1);
+        });
+    }
+    stripe();
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             applyFilter(button.getAttribute('data-filter'));
+            stripe();
             // Les projets du filtre choisi entrent l'un après l'autre
             let k = 0;
             projectCards.forEach((card) => {
