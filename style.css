@@ -1992,3 +1992,53 @@ body.lb-open { overflow: hidden; }
 .projects-grid .project-card--wide .reel-media { width: 100%; justify-self: center; }
 /* Dans les chapitres, les visuels partent de la gauche (alignés au titre) */
 .projects-grid .project-card--wide:not(.cta-card) .mini-carousel > :first-child { margin-left: 0; }
+
+
+/* ---- Variantes d'entrée des chapitres (cv-0 = montée, défini plus haut) ---- */
+/* cv-1 : lettre par lettre */
+.chapters-anim .cv-1 .ct-head > span { transform: none; }
+.chapters-anim .cv-1 .ch {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.7s var(--ease-out) calc(var(--i) * 32ms);
+}
+.chapters-anim .cv-1.in-view .ch { transform: none; }
+.chapters-anim .cv-1 .ct-it { transition-delay: 0.45s; }
+
+/* cv-2 : glissé en biais depuis la gauche, italique qui monte */
+.chapters-anim .cv-2 .ct-head { overflow: visible; }
+.chapters-anim .cv-2 .ct-head > span {
+    opacity: 0;
+    transform: translateX(-60px) skewX(-14deg);
+    transition: transform 1s var(--ease-out), opacity 0.6s ease;
+}
+.chapters-anim .cv-2 .ct-it {
+    clip-path: none;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease 0.3s, transform 0.9s var(--ease-out) 0.3s;
+}
+.chapters-anim .cv-2.in-view .ct-head > span { opacity: 1; transform: none; }
+.chapters-anim .cv-2.in-view .ct-it { opacity: 1; transform: none; }
+
+/* cv-3 : masque qui se lève + léger zoom, italique écrite de droite à gauche */
+.chapters-anim .cv-3 .ct-head > span {
+    transform: scale(1.08);
+    transform-origin: left bottom;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.35, 1), transform 1.2s var(--ease-out);
+}
+.chapters-anim .cv-3 .ct-it { clip-path: inset(-0.2em -0.2em -0.3em 100%); }
+.chapters-anim .cv-3.in-view .ct-head > span { transform: none; clip-path: inset(-0.1em 0 -0.1em 0); }
+.chapters-anim .cv-3.in-view .ct-it { clip-path: inset(-0.2em -0.2em -0.3em 0); }
+
+/* Visuels : direction différente selon la variante */
+.chapters-anim .cv-1 .mini-carousel-wrapper, .chapters-anim .cv-1 .reel-media, .chapters-anim .cv-1 .subpanel { transform: translateY(44px); }
+.chapters-anim .cv-2 .mini-carousel-wrapper, .chapters-anim .cv-2 .reel-media, .chapters-anim .cv-2 .subpanel { transform: translateX(-48px); }
+.chapters-anim .cv-3 .mini-carousel-wrapper, .chapters-anim .cv-3 .reel-media, .chapters-anim .cv-3 .subpanel { transform: scale(0.96); transform-origin: left center; }
+.chapters-anim .project-card.in-view .mini-carousel-wrapper,
+.chapters-anim .project-card.in-view .reel-media,
+.chapters-anim .project-card.in-view .subpanel { transform: none; }
+
+/* Bulle plus discrète */
+.cursor-bubble { width: 58px; height: 58px; margin: -29px 0 0 -29px; font-size: 1.05rem; }

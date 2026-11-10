@@ -512,7 +512,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (en.isIntersecting) { en.target.classList.add('in-view'); cio.unobserve(en.target); }
             });
         }, { threshold: 0.12 });
-        chapters.forEach((c) => cio.observe(c));
+        // Quatre façons d'entrer, en alternance, pour éviter la répétition
+        chapters.forEach((c, i) => {
+            const v = i % 4;
+            c.classList.add('cv-' + v);
+            if (v === 1) {
+                const inner = c.querySelector('.ct-head > span');
+                if (inner) {
+                    let n = 0;
+                    inner.innerHTML = [...inner.textContent].map((ch) => ch === ' ' ? ' '
+                        : `<span class="ch" style="--i:${n++}">${esc(ch)}</span>`).join('');
+                }
+            }
+            cio.observe(c);
+        });
     }
 
     // --- BULLE « Voir / Play » qui suit le curseur sur les visuels ---
