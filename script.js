@@ -39,11 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Alterne fond sombre / bande vin entre les projets visibles
+    function stripe() {
+        let n = 0;
+        projectCards.forEach((c) => {
+            const on = c.style.display !== 'none' && !c.classList.contains('cta-card') && c.classList.contains('project-card--wide');
+            c.classList.toggle('band', on && n++ % 2 === 1);
+        });
+    }
+    stripe();
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             applyFilter(button.getAttribute('data-filter'));
+            stripe();
             // Les projets du filtre choisi entrent l'un après l'autre
             let k = 0;
             projectCards.forEach((card) => {
@@ -309,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const item = e.target.closest('.mini-carousel-item');
+        if (item && item.closest('.photo-protect')) return;
         if (item) openViewer(item);
     });
 
@@ -512,7 +524,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (en.isIntersecting) { en.target.classList.add('in-view'); cio.unobserve(en.target); }
             });
         }, { threshold: 0.12 });
-        chapters.forEach((c) => cio.observe(c));
+        // Quatre façons d'entrer, en alternance, pour éviter la répétition
+        chapters.forEach((c, i) => {
+            const v = i % 4;
+            c.classList.add('cv-' + v);
+            if (v === 1) {
+                const inner = c.querySelector('.ct-head > span');
+                if (inner) {
+                    let n = 0;
+                    inner.innerHTML = [...inner.textContent].map((ch) => ch === ' ' ? ' '
+                        : `<span class="ch" style="--i:${n++}">${esc(ch)}</span>`).join('');
+                }
+            }
+            cio.observe(c);
+        });
     }
 
     // --- BULLE « Voir / Play » qui suit le curseur sur les visuels ---
@@ -542,6 +567,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('pointerleave', () => bubble.classList.remove('on'));
         window.addEventListener('scroll', () => bubble.classList.remove('on'), { passive: true });
     }
+
+    // --- PHOTOS PROTÉGÉES : pas de clic droit ni de glisser-déposer ---
+    document.querySelectorAll('.photo-protect img').forEach((img) => {
+        img.addEventListener('contextmenu', (e) => e.preventDefault());
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
 
     // --- MINIATURES YOUTUBE ---
     // Sans miniature HD, YouTube renvoie une image grise de 120 px (pas d'erreur) :
