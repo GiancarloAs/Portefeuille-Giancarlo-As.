@@ -1,0 +1,290 @@
+/* =====================================================================
+   GIANCARLO ASIÁN — BROCHURE DE SERVICIOS (page non liée au portfolio)
+   Même identité : encre / vin / crème / rouge
+   Archivo ExtraCondensed Black × Instrument Serif Italic + Manrope
+   ===================================================================== */
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/manrope.woff2') format('woff2-variations'), url('../fonts/manrope.woff2') format('woff2');
+    font-weight: 200 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Archivo';
+    src: url('../fonts/archivo.woff2') format('woff2-variations'), url('../fonts/archivo.woff2') format('woff2');
+    font-weight: 100 900;
+    font-stretch: 62% 125%;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Instrument Serif Italic';
+    src: url('../fonts/instrument-serif-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --ink: #190012;
+    --wine: #350219;
+    --wine-2: #42061F;
+    --cream: #FFE1C5;
+    --red: #AF0000;
+    --muted: #C9A894;
+    --line: rgba(255, 225, 197, 0.14);
+    --line-strong: rgba(255, 225, 197, 0.28);
+
+    --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+    --display: 'Archivo', 'Arial Narrow', Impact, sans-serif;
+    --script: 'Instrument Serif Italic', Georgia, serif;
+
+    --gutter: clamp(20px, 5vw, 72px);
+    --section-y: clamp(72px, 9vw, 130px);
+    --maxw: 1240px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+::selection { background: var(--red); color: var(--cream); }
+:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Typo de titres : condensée majuscule + italique serif */
+.d {
+    font-family: var(--display);
+    font-weight: 900;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+}
+.s {
+    font-family: var(--script);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-size: 0.86em;
+}
+
+/* Boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9em 1.5em;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    line-height: 1.1;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color 0.25s, color 0.25s;
+}
+.btn-primary { background: var(--red); color: var(--cream); }
+.btn-primary:hover { background: var(--cream); color: var(--ink); }
+.btn-sm { padding: 0.7em 1.2em; font-size: 0.9rem; }
+
+/* En-tête */
+.top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(25, 0, 18, 0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+.top-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+.logo {
+    font-family: var(--display);
+    font-weight: 900;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    font-size: 1.45rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+.logo span { font-family: var(--script); font-weight: 400; text-transform: none; font-size: 0.95em; margin-left: 3px; }
+
+/* Portada */
+.hero { padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 90px); }
+.kicker { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.95rem; margin-bottom: clamp(20px, 3vw, 36px); }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); animation: pulse 2.4s infinite; }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(175, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(175, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(175, 0, 0, 0); }
+}
+.hero-title { font-size: clamp(3.4rem, 10vw, 9.6rem); line-height: 0.9; font-weight: 400; }
+.hero-title > span { display: block; }
+.hero-title .s { margin-left: 0.6em; color: var(--cream); }
+.hero-title .d:last-child { color: var(--red); }
+
+.hero-foot {
+    margin-top: clamp(32px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(24px, 4vw, 64px);
+    align-items: end;
+}
+.lead { color: var(--muted); max-width: 46ch; font-size: 1.1rem; }
+.hero-strip { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.hero-strip li { aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; background: var(--wine); }
+.hero-strip li:nth-child(even) { transform: translateY(18px); }
+.hero-strip img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Clients */
+.clients { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 0; }
+.clients-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+.clients-list { display: flex; flex-wrap: wrap; gap: 0.2em 0.7em; font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.15; }
+.clients-list span { font-family: var(--display); font-weight: 900; font-stretch: 62%; text-transform: uppercase; }
+.clients-list i { font-family: var(--script); font-style: normal; color: var(--muted); }
+
+/* Sections */
+.section { padding: var(--section-y) 0; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 48px; margin-bottom: clamp(36px, 5vw, 64px); }
+.title { font-size: clamp(2.8rem, 7vw, 6rem); line-height: 0.92; font-weight: 400; }
+.head-lead { max-width: 40ch; color: var(--muted); }
+
+/* Services */
+.services {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.svc {
+    background: var(--ink);
+    padding: clamp(24px, 3vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 0.3s;
+}
+.svc:hover { background: var(--wine); }
+.svc .num { font-family: var(--script); font-size: 2.2rem; line-height: 1; color: var(--red); }
+.svc h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; }
+.svc p { color: var(--muted); font-size: 0.98rem; flex: 1; }
+.svc--accent { background: var(--wine); }
+.svc--accent:hover { background: var(--wine-2); }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.tags li { font-size: 0.78rem; padding: 4px 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--cream); }
+
+/* Proceso — bande crème */
+.section--cream { background: var(--cream); color: var(--ink); }
+.section--cream .head-lead { color: #6B3A44; }
+.section--cream .title .d { color: var(--ink); }
+.section--cream .title .s { color: var(--red); }
+.steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2.5vw, 32px); }
+.steps li { border-top: 2px solid var(--ink); padding-top: 18px; }
+.steps .num { font-family: var(--script); font-size: 2.4rem; line-height: 1; color: var(--red); }
+.steps h3 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-stretch: 62%;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1;
+    margin: 10px 0 8px;
+}
+.steps p { color: #5A2A35; font-size: 0.98rem; }
+
+/* Datos del proveedor */
+.provider { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.provider .head-lead { margin-top: 20px; }
+.facts { border-top: 1px solid var(--line-strong); }
+.facts div { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.facts dt { color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; padding-top: 2px; }
+.facts dd { font-weight: 600; }
+
+/* Contacto */
+.contact { text-align: center; background: var(--wine); }
+.contact-title { font-size: clamp(3.2rem, 11vw, 10rem); line-height: 0.88; font-weight: 400; }
+.contact-title > span { display: block; }
+.contact-title .s { color: var(--cream); }
+.mail {
+    display: inline-block;
+    margin-top: clamp(28px, 4vw, 48px);
+    font-size: clamp(1.3rem, 3vw, 2.2rem);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 4px;
+    transition: color 0.25s;
+}
+.mail:hover { color: var(--red); }
+.links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+.links a {
+    display: inline-block;
+    padding: 0.7em 1.2em;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.25s, color 0.25s;
+}
+.links a:hover { background: var(--cream); color: var(--ink); }
+
+/* Pied */
+.foot { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+.foot .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.print-btn {
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--cream);
+    font: 600 0.85rem var(--sans);
+    padding: 0.6em 1em;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.print-btn:hover { background: var(--cream); color: var(--ink); }
+
+/* Responsive */
+@media (max-width: 960px) {
+    .services { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .hero-foot, .provider { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .services, .steps { grid-template-columns: 1fr; }
+    .hero-strip { grid-template-columns: repeat(2, 1fr); }
+    .hero-strip li:nth-child(n+3) { display: none; }
+    .facts div { grid-template-columns: 1fr; gap: 2px; }
+    .top .btn { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
+
+/* Impression / « Guardar como PDF » : garde les couleurs de la marque */
+@media print {
+    @page { size: A4; margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .top { position: static; backdrop-filter: none; }
+    .top .btn, .print-btn { display: none; }
+    .section, .hero { padding: 44px 0; }
+    .services, .steps, .facts, .svc, .steps li { break-inside: avoid; }
+    #proceso, #proveedor { break-before: page; }
+    .svc:hover { background: var(--ink); }
+}
