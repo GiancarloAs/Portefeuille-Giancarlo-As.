@@ -131,7 +131,7 @@ a { color: inherit; }
 }
 .hero-title { font-size: clamp(3.4rem, 10vw, 9.6rem); line-height: 0.9; font-weight: 400; }
 .hero-title > span { display: block; }
-.hero-title .s { margin-left: 0.6em; color: var(--cream); }
+.hero-title .s { margin: 0.02em 0 0.1em 0.6em; line-height: 1.05; color: var(--cream); }
 .hero-title .d:last-child { color: var(--red); }
 
 .hero-foot {
