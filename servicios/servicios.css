@@ -277,14 +277,84 @@ a { color: inherit; }
     html { scroll-behavior: auto; }
 }
 
-/* Impression / « Guardar como PDF » : garde les couleurs de la marque */
+/* Enveloppes utilisées seulement à l'impression */
+.print-cover, .print-sheet { display: contents; }
+
+/* =====================================================================
+   Impression / « Guardar como PDF » — mise en page A4 dédiée
+   p.1 portada + clientes · p.2 servicios (grille 3×3) · p.3 proceso +
+   proveedor · p.4 contacto
+   ===================================================================== */
+@page { size: A4; margin: 0; }
 @media print {
-    @page { size: A4; margin: 0; }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .top { position: static; backdrop-filter: none; }
-    .top .btn, .print-btn { display: none; }
-    .section, .hero { padding: 44px 0; }
-    .services, .steps, .facts, .svc, .steps li { break-inside: avoid; }
-    #proceso, #proveedor { break-before: page; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html, body { background: var(--ink); font-size: 10.5pt; width: 210mm; }
+    .wrap { max-width: none; padding: 0 14mm; }
+    .top .btn, .print-btn, .dot { display: none !important; }
+
+    /* Chaque « page » remplit une feuille A4 */
+    #servicios, #contacto {
+        min-height: 297mm;
+        break-after: page;
+        display: flex;
+        flex-direction: column;
+    }
+    #contacto { break-after: auto; justify-content: center; }
+
+    /* p.1 — en-tête + portada + clientes */
+    .top { position: static; background: var(--ink); backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1px solid var(--line); }
+    .top-bar { height: 18mm; }
+    .logo { font-size: 16pt; }
+    .print-cover { display: flex; flex-direction: column; min-height: 297mm; break-after: page; }
+    .print-cover .hero { min-height: 0; break-after: auto; flex: 1; padding: 22mm 0 12mm; justify-content: center; }
+    .kicker { font-size: 10pt; margin-bottom: 8mm; }
+    .hero-title { font-size: 76pt; }
+    .hero-foot { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 10mm; margin-top: 14mm; align-items: end; }
+    .lead { font-size: 10.5pt; }
+    .hero-strip { grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+    .hero-strip li { display: block !important; aspect-ratio: auto; height: 44mm; }
+    .hero-strip li:nth-child(even) { transform: translateY(5mm); }
+    .clients { padding: 9mm 0 12mm; border-bottom: 0; }
+    .clients-label { font-size: 8.5pt; }
+    .clients-list { font-size: 19pt; }
+
+    /* p.2 — servicios : 9 cartes = grille 3×3 pleine, sans case vide */
+    #servicios { padding: 16mm 0 12mm; justify-content: flex-start; }
+    .head { margin-bottom: 8mm; gap: 4mm 12mm; flex-wrap: nowrap; }
+    .title { font-size: 44pt; white-space: nowrap; }
+    .head-lead { font-size: 9.5pt; max-width: 62ch; }
+    .services { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; flex: 1; }
+    .svc { padding: 6mm 5mm; gap: 2.4mm; break-inside: avoid; }
     .svc:hover { background: var(--ink); }
+    .svc--accent, .svc--accent:hover { background: var(--wine); }
+    .svc .num { font-size: 20pt; }
+    .svc h3 { font-size: 11.5pt; }
+    .svc p { font-size: 8.8pt; line-height: 1.5; }
+    .tags li { font-size: 7pt; padding: 1mm 2.4mm; }
+
+    /* p.3 — proceso + proveedor */
+    .print-sheet { min-height: 297mm; break-after: page; display: flex; flex-direction: column; }
+    .print-sheet .section { min-height: 0; break-after: auto; }
+    #proceso { padding: 16mm 0 14mm; }
+    .steps { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 6mm; }
+    .steps .num { font-size: 20pt; }
+    .steps h3 { font-size: 18pt; }
+    .steps p { font-size: 9pt; }
+    #proveedor { flex: 1; padding: 14mm 0; }
+    .provider { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) !important; gap: 12mm; }
+    #proceso .title, #proveedor .title { font-size: 40pt; }
+    #proveedor .title { white-space: normal; }
+    #proveedor .title .s { display: block; }
+    .facts div { grid-template-columns: 34mm 1fr !important; padding: 3.2mm 0; gap: 4mm; }
+    .facts dt { font-size: 8pt; }
+    .facts dd { font-size: 10pt; }
+
+    /* p.4 — contacto */
+    #contacto { padding: 0; }
+    .contact-title { font-size: 84pt; }
+    .mail { font-size: 20pt; margin-top: 12mm; }
+    .links { margin-top: 10mm; }
+    .links a { font-size: 10pt; }
+    .foot { display: none; }
 }
